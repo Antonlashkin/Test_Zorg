@@ -13,12 +13,15 @@ public class EnemyRotate : MonoBehaviour
 
     void Update()
     {
-        float angle = Mathf.Atan(-(player.transform.position.x - transform.position.x) / (player.transform.position.y - transform.position.y)) * Mathf.Rad2Deg;
-
-        if (player.transform.position.y - transform.position.y < 0)
+        if (player != null)
         {
-            angle += 180;
+            float angle = Mathf.Atan(-(player.transform.position.x - transform.position.x) / (player.transform.position.y - transform.position.y)) * Mathf.Rad2Deg;
+
+            if (player.transform.position.y - transform.position.y < 0)
+            {
+                angle += 180;
+            }
+            transform.rotation = Quaternion.Euler(0, 0, angle);
         }
-        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 }

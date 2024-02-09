@@ -88,7 +88,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb54c04c65e07d4fa015431c598f27c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
 --- !u!1 &1669952238673818198
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 102603e4e06df1f4988bc64acba28b23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
 --- !u!50 &2751170314833072714
 Rigidbody2D:
   serializedVersion: 4
@@ -213,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea370224479997489ca0fdeaa30d353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 50
+  reloadTime: 1
 --- !u!1 &4454839428119899084
 GameObject:
   m_ObjectHideFlags: 0

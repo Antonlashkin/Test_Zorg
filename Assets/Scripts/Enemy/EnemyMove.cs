@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    private float speed;
     private GameObject player;
     Rigidbody2D rigidBody;
 
@@ -14,15 +14,22 @@ public class EnemyMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        float hypotenuse = Mathf.Sqrt(Mathf.Pow(player.transform.position.x - transform.position.x, 2) + Mathf.Pow(player.transform.position.y - transform.position.y, 2));
-        float deltaX = (player.transform.position.x - transform.position.x) / hypotenuse * speed;
-        float deltaY = (player.transform.position.y - transform.position.y) / hypotenuse * speed;
+        if (player!= null)
+        {
+            float hypotenuse = Mathf.Sqrt(Mathf.Pow(player.transform.position.x - transform.position.x, 2) + Mathf.Pow(player.transform.position.y - transform.position.y, 2));
+            float deltaX = (player.transform.position.x - transform.position.x) / hypotenuse * speed;
+            float deltaY = (player.transform.position.y - transform.position.y) / hypotenuse * speed;
 
-        Vector3 movement = new Vector3(deltaX, deltaY, 0);
-        movement = Vector3.ClampMagnitude(movement, speed);
+            Vector3 movement = new Vector3(deltaX, deltaY, 0);
+            movement = Vector3.ClampMagnitude(movement, speed);
 
-        movement *= Time.deltaTime;
-        rigidBody.velocity = movement;
-        //rigidBody.MovePosition(transform.position + movement);
+            movement *= Time.deltaTime;
+            rigidBody.velocity = movement;
+        }
+    }
+
+    public void SetSpeed(float _speed)
+    {
+        speed = _speed;
     }
 }
