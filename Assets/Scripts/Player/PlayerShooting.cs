@@ -1,18 +1,27 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private GameObject shellPrefab;
+    private GameObject _shell;
+    private bool anyEnemy = true;
+
     void Start()
     {
-        
+        StartCoroutine(Shooting());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator Shooting()
     {
-        
+        yield return new WaitForSeconds(1f);
+        if (anyEnemy)
+        {
+            _shell = Instantiate(shellPrefab);
+            _shell.transform.position = transform.TransformPoint(Vector3.up * 0.15f);
+            _shell.transform.rotation = transform.rotation;
+        }
+        StartCoroutine(Shooting());
+        yield return null;
     }
 }

@@ -6,21 +6,21 @@ public class PalyerMove : MonoBehaviour
     [SerializeField] private GameObject background;
 
     [SerializeField] private FixedJoystick _joystick;
-    [SerializeField] float speed = 5f;
-    CharacterController _characterCantroller;
+    [SerializeField] float speed;
+    Rigidbody2D rigidBody;
     private float halfBackgroundWidth;
     private float halfBackgroundHeight;
 
 
     void Start()
     {
-        _characterCantroller = GetComponent<CharacterController>();
+        rigidBody = GetComponent<Rigidbody2D>();
 
         halfBackgroundWidth = background.transform.localScale.x / 2 - 1;
         halfBackgroundHeight = background.transform.localScale.y / 2 - 1 ;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         float deltaX = _joystick.Horizontal * speed;
         float deltaY = _joystick.Vertical * speed;
@@ -28,7 +28,6 @@ public class PalyerMove : MonoBehaviour
         movement = Vector3.ClampMagnitude(movement, speed);
 
         movement *= Time.deltaTime;
-        movement = transform.TransformDirection(movement);
 
         if (transform.position.x > halfBackgroundWidth && movement.x > 0)
         {
@@ -46,6 +45,7 @@ public class PalyerMove : MonoBehaviour
         {
             movement.y = 0;
         }
-        _characterCantroller.Move(movement);
+        rigidBody.velocity = movement;
+        //rigidBody.MovePosition(transform.position + movement);
     }
 }

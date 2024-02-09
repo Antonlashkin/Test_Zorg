@@ -23,7 +23,7 @@ public class CameraMovement : MonoBehaviour
 
     void Update()
     {
-
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);   
         if (player.transform.position.x + cameraHalfWidthSize > halfBackgroundWidth)
         {
             transform.position = new Vector3(halfBackgroundWidth - cameraHalfWidthSize, transform.position.y, transform.position.z);
